@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# `head` cuts the trailing newline added by rofi.
+parse_cliptray ~/.cliptray | \
+	rofi -dmenu -sep "\0" | \
+	head -c -1 | \
+	xclip -selection clipboard

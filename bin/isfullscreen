@@ -1,0 +1,13 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p "with xorg; [xdpyinfo xdotool xwininfo]"
+# https://askubuntu.com/questions/30147/command-to-determine-whether-a-fullscreen-application-is-running/30414#30414
+WINDOW=$(echo $(xwininfo -id $(xdotool getactivewindow) -stats | \
+                egrep '(Width|Height):' | \
+                awk '{print $NF}') | \
+         sed -e 's/ /x/')
+SCREEN=$(xdpyinfo | grep -m1 dimensions | awk '{print $2}')
+if [ "$WINDOW" = "$SCREEN" ]; then
+    exit 0
+else
+    exit 1
+fi

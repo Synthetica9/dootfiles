@@ -1,0 +1,8 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p killall
+
+while :
+do
+	sleep 400
+	([ -f .coffee ] || isfullscreen) && xset s reset && echo "Sent heartbeat"
+done

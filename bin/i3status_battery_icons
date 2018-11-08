@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+
+import re
+
+bat_icons = {
+  0: ''
+  1: ''
+  2: ''
+  3: ''
+  4: ''
+}
+
+status_chr = ""
+status_pause = ""
+status_full = ""
+
+any_percent = r'\d+\%:'
+
+subs = {
+    ":PAUSE:" + any_percent: status_unk
+}
+
+def replace(s):
+    if ":PAUSE:" in s:
+        re.sub(':PAUSE:' + any_percent, )

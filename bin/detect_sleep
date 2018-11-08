@@ -1,0 +1,23 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i python3 -p "python3"
+
+from time import sleep
+from datetime import datetime, timedelta
+
+
+RESOLUTION = timedelta(seconds=0.05)
+MULT = 10
+
+
+def main():
+    diff = timedelta()
+    t_1 = datetime.now()
+    while True:
+        sleep(RESOLUTION.total_seconds())
+        t_1, t_0 = datetime.now(), t_1
+        Δt = t_1 - t_0
+        if Δt > MULT * RESOLUTION:
+            return
+
+if __name__ == "__main__":
+    main()

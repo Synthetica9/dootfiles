@@ -1,0 +1,2 @@
+#!/bin/sh
+xargs kill -USR2 < /tmp/wallpapermanager.pid

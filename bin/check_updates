@@ -1,0 +1,60 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i python3 -p "with python36Packages; [python3 urllib3]"
+
+from datetime import datetime, timedelta
+from urllib3 import PoolManager
+import subprocess
+import re
+
+CHANNEL = "nixos-unstable"
+URL = f"https://channels.nix.gsc.io/{CHANNEL}/history"
+USER = "root"
+
+INTERVAL = timedelta(minutes=30)
+
+GET = "GET"
+
+http = PoolManager()
+
+def latest_versions(url=URL):
+    x = http.request(GET, url)
+    raw_versions = x.data.split(b'\n')
+    for v in reversed(raw_versions):
+        if not v:
+            continue
+
+        (h, timestamp) = v.split()
+        t = datetime.utcfromtimestamp(int(timestamp))
+
+        yield (h, t)
+
+
+def installed_version(user=USER):
+    output = subprocess.check_output("nix-info")
+    x = output.split(b', ')
+    checkfor = bytes(f"channels({user})", "ascii")
+
+    for item in x:
+        if item.startswith(checkfor):
+            return re.search(b"[0-9a-z]{11}", item).group(0)
+
+    raise ValueError()
+
+
+def main():
+    installed_hash = installed_version()
+    versions = iter(latest_versions())
+
+    (h, t) = next(versions)
+    if h.startswith(installed_hash):
+        # We are up-to-date.
+        print("No updates available.")
+    else:
+        print(h, installed_hash, t)
+
+    for v in versions:
+        pass
+
+
+if __name__ == "__main__":
+    main()

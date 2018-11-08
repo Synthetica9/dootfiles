@@ -1,0 +1,4 @@
+#!/bin/sh
+
+MSG=$(curl http://whatthecommit.com/index.txt)
+git commit -am "$MSG"

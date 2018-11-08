@@ -1,0 +1,3 @@
+#!/bin/sh
+
+(rm ~/.coffee && notify-desktop "Yaaaawn...") || (touch ~/.coffee && notify-desktop "Ahh, I've had my coffee now and I feel great!")

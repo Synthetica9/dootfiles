@@ -1,0 +1,10 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i fish -p "fish"
+
+# Ensure it exists:
+nix-build '<nixpkgs>' -A $argv; or exec fish
+# As a side effect, this prints the path, but that's okay.
+
+
+# Actually use it
+nix-shell --run fish -p $argv;

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+pname=xfce4-screenshooter
+pkill -f $pname || $pname

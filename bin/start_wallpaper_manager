@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cd ~/wallpapers/managerv2 
+touch /tmp/wallpapermanager.log
+while true
+do
+    rm /tmp/wallpapermanager.pid
+    stdbuf -oL -eL ./manager.py | tee /tmp/wallpapermanager.log
+done

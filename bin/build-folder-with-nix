@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if (( $# != 1 )); then
+    echo "Illegal number of parameters"
+fi
+
+nix-build -E "(import <nixpkgs>{}).$1.overrideAttrs (old:  { source = ./.; })"

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+flock -w 1 /tmp/lock_screen lock_screen
+rm /tmp/lock_screen
