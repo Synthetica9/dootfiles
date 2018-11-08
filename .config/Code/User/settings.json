@@ -1,0 +1,48 @@
+{
+  "editor.renderWhitespace": "boundary",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.side": "left",
+  "editor.minimap.showSlider": "always",
+  "workbench.colorTheme": "Atom One Dark",
+  "atomKeymap.promptV3Features": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.smoothScrolling": true,
+  "workbench.colorCustomizations": {
+    "activityBarBadge.background": "#61afef",
+    "list.activeSelectionForeground": "#61afef",
+    "list.inactiveSelectionForeground": "#61afef",
+    "list.highlightForeground": "#61afef",
+    "scrollbarSlider.activeBackground": "#61afef50",
+    "editorSuggestWidget.highlightForeground": "#61afef",
+    "textLink.foreground": "#61afef",
+    "progressBar.background": "#61afef",
+    "pickerGroup.foreground": "#61afef",
+    "tab.activeBorder": "#61afef",
+    "notificationLink.foreground": "#61afef",
+    "editorWidget.resizeBorder": "#61afef",
+    "editorWidget.border": "#61afef",
+    "settings.modifiedItemIndicator": "#61afef",
+    "settings.headerForeground": "#61afef",
+    "panelTitle.activeBorder": "#61afef",
+    "breadcrumb.activeSelectionForeground": "#61afef",
+    "menu.selectionForeground": "#61afef",
+    "menubar.selectionForeground": "#61afef"
+  },
+  "window.zoomLevel": 0,
+  "editor.rulers": [
+    80
+  ],
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "haskell.hlint.hints": [
+    "dollar",
+    "generalise"
+  ],
+  "haskell.symbols.provider": "hasktags",
+  "files.trimTrailingWhitespace": true,
+  "workbench.statusBar.feedback.visible": false,
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "files.trimFinalNewlines": true
+}
