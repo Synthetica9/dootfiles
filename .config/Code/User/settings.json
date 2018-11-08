@@ -44,5 +44,6 @@
   "workbench.statusBar.feedback.visible": false,
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
-  "files.trimFinalNewlines": true
+  "files.trimFinalNewlines": true,
+  "stylishHaskell.showConsoleOnError": false
 }
