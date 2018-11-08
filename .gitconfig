@@ -1,0 +1,18 @@
+[user]
+	email = git@hilhorst.be
+	name = Patrick Hilhorst
+	signingkey = 589BB0A8DAFEF2B2
+[remote "origin"]
+	receivepack = git receive-pack
+[alias "commit"]
+[alias]
+	whatthecommit = !git-whatthecommit
+	shrug = !git-shrug
+	fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+	conflicts = diff --name-only --diff-filter=U
+	changedfiles = diff --no-commit-id --name-only -r
+	recommit = commit --amend --reuse-message HEAD
+	usb = !git-usb
+
+[commit]
+	gpgsign = true
