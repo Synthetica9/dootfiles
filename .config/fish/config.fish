@@ -40,3 +40,4 @@ function fish_greeting
 end
 
 set PATH $PATH ~/go/bin
+export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
