@@ -219,6 +219,7 @@ bindsym $mod+period exec i3_dock
 for_window [class="keepassxc" tiling] move container to workspace 4
 for_window [class="Conky"] move container to workspace 10
 exec keepassxc
+exec nm-applet
 
 for_window [class="^.*"] border pixel 2
 for_window [class="^albert"] border pixel 0
