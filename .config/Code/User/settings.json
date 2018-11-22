@@ -45,5 +45,6 @@
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "files.trimFinalNewlines": true,
-  "stylishHaskell.showConsoleOnError": false
+  "stylishHaskell.showConsoleOnError": false,
+  "macros": {}
 }

@@ -1,19 +1,31 @@
 // Place your key bindings in this file to overwrite the defaults
 [
-    {
-        "key": "ctrl+t",
-        "command": "workbench.action.quickOpen"
-    },
-    {
-        "key": "ctrl+shift+m",
-        "command": "editor.action.selectToBracket"
-    },
-    {
-        "key": "ctrl+alt+0",
-        "command": "workbench.action.zoomReset"
-    },
-    {
-        "key": "ctrl+numpad0",
-        "command": "-workbench.action.zoomReset"
-    },
+  {
+    "key": "ctrl+t",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+shift+m",
+    "command": "editor.action.selectToBracket"
+  },
+  {
+    "key": "ctrl+alt+0",
+    "command": "workbench.action.zoomReset"
+  },
+  {
+    "key": "ctrl+numpad0",
+    "command": "-workbench.action.zoomReset"
+  },
+  {
+    "key": "ctrl+alt+backspace",
+    "command": "bracketeer.removeBrackets"
+  },
+  {
+    "key": "ctrl+shift+alt+i",
+    "command": "-bracketeer.removeBrackets"
+  },
+  {
+    "key": "ctrl+shift+m",
+    "command": "bracketeer.selectBracketContent"
+  },
 ]
