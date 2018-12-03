@@ -35,7 +35,7 @@ font pango:Fira Code 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec qterminal -e fish
+bindsym $mod+Return exec konsole
 bindsym $mod+Shift+Return exec qterminal -e "ssh hydropump"
 
 # kill focused window
