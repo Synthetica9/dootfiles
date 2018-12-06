@@ -7,7 +7,7 @@ on: Ask HN: What do you use to manage dotfiles?
 I use:
 
     git init --bare $HOME/.myconf
-    alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+    alias config='git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
     config config status.showUntrackedFiles no
 
 where my ~/.myconf directory is a git bare 
