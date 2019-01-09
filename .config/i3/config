@@ -187,6 +187,12 @@ bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
 bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
 bindsym XF86AudioMicMute exec amixer set Capture toggle
 
+bindsym $mod+Down exec playerctl play-pause
+bindsym $mod+Left exec playerctl previous
+bindsym $mod+Right exec playerctl next
+bindsym $mod+Up exec playerctl stop
+
+
 bindsym Print exec screenshot
 
 bindsym XF86MonBrightnessUp exec brightness_up
