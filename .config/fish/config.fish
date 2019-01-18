@@ -3,11 +3,12 @@ cat /tmp/notifications/*.md |  pandoc --to gfm --from markdown | pygmentize -l m
 thefuck --alias | source
 
 # Single-letters abbrs
-abbr a atom
+abbr b bat
+abbr v code
 abbr f fuck
-abbr n new_term
-abbr p pygmentize
 abbr i import
+abbr g git
+abbr gf git fzf
 alias config 'git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 # General tool abbrs
@@ -41,3 +42,16 @@ end
 
 set PATH $PATH ~/go/bin
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
+
+function fish_user_key_bindings
+  bind \ch "commandline (history --null | fzf -q (commandline) --read0 --preview '' --multi --tiebreak=index; commandline -f repaint)"
+  bind \ce "nohup thunar > /dev/null ^ /dev/null &"
+end
+
+set TFALIASFILE /tmp/tfalias.fish
+
+if [ ! -f TFALIASFILE ]
+  thefuck --alias > $TFALIASFILE
+end
+
+source $TFALIASFILE
