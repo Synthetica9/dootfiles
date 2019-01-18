@@ -1,7 +1,9 @@
 [Appearance]
-BoldIntense=true
+AntiAliasFonts=true
+BoldIntense=false
 ColorScheme=One Dark
-Font=Fira Code Light,12,-1,5,25,0,0,0,0,0
+Font=Fira Code,12,-1,5,25,0,0,0,0,0,Light
+UseFontLineChararacters=false
 
 [General]
 Command=fish
