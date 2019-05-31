@@ -6,4 +6,5 @@ while true
 do
     rm /tmp/wallpapermanager.pid
     stdbuf -oL -eL ./manager.py | tee /tmp/wallpapermanager.log
+    sleep 10
 done

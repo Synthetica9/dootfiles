@@ -41,10 +41,55 @@
   ],
   "haskell.symbols.provider": "hasktags",
   "files.trimTrailingWhitespace": true,
+  "[diff]": {
+    "files.trimTrailingWhitespace": false
+  },
   "workbench.statusBar.feedback.visible": false,
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "files.trimFinalNewlines": true,
   "stylishHaskell.showConsoleOnError": false,
-  "macros": {}
+  "window.menuBarVisibility": "toggle",
+  "editor.selectionClipboard": false,
+  "cSpell.language": "nl-NL,en-US,en-GB,en",
+  "bracket-pair-colorizer-2.showBracketsInRuler": true,
+  "cSpell.userWords": [
+    "Fira",
+    "LSTM",
+    "arccos",
+    "gnuplot",
+    "monoid",
+    "strftime",
+    "synthetica"
+  ],
+  "files.insertFinalNewline": true,
+  "window.titleBarStyle": "native",
+  "todo-tree.defaultHighlight": {
+    "foreground": "green",
+    "type": "none"
+  },
+  "todo-tree.customHighlight": {
+    "TODO": {},
+    "FIXME": {}
+  },
+  "terminal.integrated.shell.linux": "/run/current-system/sw/bin/fish",
+  "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+  "explorer.confirmDelete": false,
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "files.autoSave": "afterDelay",
+    "wordcounter.enabled": true,
+    "wordcounter.count_words": true,
+    "wordcounter.readtime": true,
+  },
+  "files.autoSave": "afterDelay",
+  "wordcounter.enabled": false,
+  "openInApplication.applications": {
+    "pdf": "zathura",
+    "png": "gimp",
+    "jpg": "gimp"
+  },
 }

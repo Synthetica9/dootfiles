@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=false
 ColorScheme=One Dark
-Font=Fira Code,12,-1,5,25,0,0,0,0,0,Light
+Font=Fira Code,11,-1,5,25,0,0,0,0,0
 UseFontLineChararacters=false
 
 [General]

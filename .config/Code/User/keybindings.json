@@ -9,7 +9,7 @@
     "command": "editor.action.selectToBracket"
   },
   {
-    "key": "ctrl+alt+0",
+    "key": "ctrl+0",
     "command": "workbench.action.zoomReset"
   },
   {
@@ -28,4 +28,65 @@
     "key": "ctrl+shift+m",
     "command": "bracketeer.selectBracketContent"
   },
+  {
+    "key": "ctrl+shift+q",
+    "command": "extension.reflowParagraph",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+'",
+    "command": "findJump.activate"
+  },
+  {
+    "key": "ctrl+shift+'",
+    "command": "findJump.activateWithSelection"
+  },
+  {
+    "key": "ctrl+alt+tab",
+    "command": "type",
+    "args": {
+      "text": "\t"
+    },
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+enter",
+    "command": "editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "-editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+enter",
+    "command": "problems.action.showQuickFixes",
+    "when": "problemFocus"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "-problems.action.showQuickFixes",
+    "when": "problemFocus"
+  },
+  {
+    "key": "alt+up",
+    "command": "-editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+down",
+    "command": "-editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "-editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "-editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  }
 ]

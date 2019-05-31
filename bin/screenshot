@@ -1,4 +1,44 @@
 #!/usr/bin/env bash
 
-pname=xfce4-screenshooter
-pkill -f $pname || $pname
+set -euxo pipefail
+
+PIDFILE=/tmp/screenshot.pid
+OUTFILE=/tmp/screenshot_output
+
+# https://tobru.ch/follow-up-bash-script-locking-with-flock/
+# lock it
+exec 200>$PIDFILE
+flock -n 200 || (notify-desktop "Couldn't acquire screenshot lock"; exit 1)
+echo $$ 1>&200
+
+DATE=$(date +'%Y-%m-%d_%H-%M-%S')
+NAME=$HOME/screenshots/Screenshot_$DATE.png
+echo $NAME
+
+grim $NAME
+
+notify-desktop "Saved screenshot to $NAME" -t 5000
+
+REPLACEUPLOAD=""
+if [[ "${1:-}" == "upload" ]]; then
+  function cleanup {
+      swaymsg mode default > /dev/stderr
+      flock -u 200
+  }
+  trap cleanup EXIT
+  swaymsg mode "screenshot_upload" > /dev/stderr
+  
+  REPLACEFLAG=""
+  for secs in $(seq 5 -1 1) 
+  do
+    REPLACEFLAG=--replaces=$(notify-desktop $REPLACEFLAG "Uploading screenshot in $secs" -t 1050)
+    sleep 1
+  done
+  REPLACEUPLOAD=--replaces=$(notify-desktop "Uploading screenshot" -t -1)
+  imgurbash2 $NAME 2> >(awk '{print $1}')
+else
+  echo $NAME
+fi | tr -d '\n' | tee $OUTFILE
+
+wl-copy < $OUTFILE
+notify-desktop $REPLACEUPLOAD "Copied $(cat $OUTFILE) to clipboard" -t 5000

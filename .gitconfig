@@ -12,7 +12,8 @@
 	conflicts = diff --name-only --diff-filter=U
 	changedfiles = diff --no-commit-id --name-only -r
 	recommit = commit --amend --reuse-message HEAD
-	usb = !git-usb
+	usb = !git-fzf
+	fzf = "!f() { /home/synthetica/devel/git-fzf/git-fzf.sh $@ }; f"
 
 [commit]
 	gpgsign = true

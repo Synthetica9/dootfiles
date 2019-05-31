@@ -231,7 +231,7 @@ for_window [class="^.*"] border pixel 2
 for_window [class="^albert"] border pixel 0
 #for_window [class="^albert"] move  position center
 for_window [instance=xfce4-display-settings] sticky enable
-
+for_window [class="nm-openvpn-auth-dialog"] sticky enable
 
 # i3-gaps specific stuff:
 smart_borders on

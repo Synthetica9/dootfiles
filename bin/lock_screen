@@ -1,32 +1,14 @@
 #!/usr/bin/env bash
 
-# https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/index.html%3Fanswer=6205.html#post-id-6205
-CURR_WORKSPACE=$(i3-msg -t get_workspaces \
+CURR_WORKSPACE=$(swaymsg -t get_workspaces \
    | jq '.[] | select(.focused==true).name' \
    | cut -d"\"" -f2)
-i3-msg workspace 10
 echo "CURR_WORKSPACE: " $CURR_WORKSPACE 
+swaymsg workspace 10
 
-playerctl status || amixer set Master mute &
-# sleep 2 && xset dpms force off &
+ZERO_ALPHA=00000000
 
+swaylock -i ~/resources/lock/lock.png --ignore-empty-password --inside-color=$ZERO_ALPHA --color=00000088 \
+	&& i3-msg workspace $CURR_WORKSPACE &
 
-BLANK='#00000000'
-
-i3lock-color --show-failed-attempts --nofork \
-  --image="/home/synthetica/resources/lock/lock.png" \
-  --insidecolor=$BLANK \
-  && i3-msg workspace $CURR_WORKSPACE &
-#dm-tool lock
-
-xrefresh
-
-wait -n
-
-# Do this after we wake from sleep (ideally)
-# detect_sleep \
-kill -SIGALRM \
-    `cat /tmp/wallpapermanager.pid` \
-    `cat /tmp/auto_brightness.pid` \
-    `cat /tmp/nixos_update_watcher.pid`
-
+wait
