@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+
+from pprint import pprint
+import psutil
+import subprocess
+import i3ipc
+from os.path import commonpath
+from os import getenv
+
+THUNAR = 'File Manager'
+KONSOLE = 'Konsole'
+VSCODE = 'Visual Studio Code'
+
+def getPidPaths(*pids):
+    pids = [str(pid) for pid in pids]
+    raw = subprocess.check_output(['pwdx'] + pids).decode('utf8')
+    print(raw)
+    for line in raw.split('\n'):
+        if not line:
+            continue
+        _pid, path = line.split(': ')
+        yield path
+
+# TODO: Make daemon
+def getPaths(i3):
+    windows = i3.get_tree().find_focused().workspace().leaves()
+    for window in windows:
+        pid = window.pid
+        name = window.name
+        print(pid, name, sep='\t')
+
+        if name.endswith(KONSOLE):
+            proc = psutil.Process(pid)
+            print(proc)
+            for child in proc.children():
+                yield from getPidPaths(child.pid)
+        elif name.endswith(THUNAR):
+            path, _name = name.rsplit(' - ', 1)
+            assert _name == THUNAR, f'{_name}'
+            print(path)
+            yield path
+
+def joinPaths(paths):
+    try:
+        paths = list(paths)
+        return commonpath(paths)
+    except:
+        return getenv('HOME')
+
+
+def openTerm(i3):
+    i3.command(f'exec konsole --workdir {joinPaths(getPaths(i3))}')
+
+
+if __name__ == '__main__':
+    openTerm(i3ipc.Connection())

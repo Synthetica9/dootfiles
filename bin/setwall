@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -euxo pipefail
+W="$HOME/.wallpaper"
+
+if [ -n "${1:-}" ]; then
+  ln -fs "$1" "$W"
+fi
+swaymsg output '*' background "$W"  fill

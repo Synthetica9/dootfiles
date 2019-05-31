@@ -1,0 +1,2 @@
+#!/bin/sh
+nix-shell -p "python2.withPackages (p: with p; [pwntools pyelftools])" --run "python $@" -I 'nixpkgs=https://github.com/nixos/nixpkgs/archive/02b4738052f2641cfeff66369a4fdd29487df197.tar.gz'

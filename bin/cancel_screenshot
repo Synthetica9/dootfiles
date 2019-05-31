@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+xargs pkill -TERM -P < /tmp/screenshot.pid

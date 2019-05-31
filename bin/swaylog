@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ls /tmp/sway_*.log | sort | tail --lines 1 | exec xargs less -R +F
