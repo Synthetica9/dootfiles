@@ -1,0 +1,260 @@
+set $mod Mod4
+set $bg #282c34
+set $fg #abb2bf
+set $bgHighlight #2196f3
+set $fgHighlight #ffffff
+
+set $left l
+set $right semicolon
+set $up k
+set $down j
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:Fira Code 11
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec open_term
+bindsym $mod+Control+Return exec konsole
+
+# kill focused window
+bindsym $mod+q kill
+
+bindsym $mod+d exec albert toggle
+
+# Change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+set $x_switch exec --no-startup-id i3-wk-switch
+
+bindsym $mod+1 $x_switch 1
+bindsym $mod+2 $x_switch 2
+bindsym $mod+3 $x_switch 3
+bindsym $mod+4 $x_switch 4
+bindsym $mod+5 $x_switch 5
+bindsym $mod+6 $x_switch 6
+bindsym $mod+7 $x_switch 7
+bindsym $mod+8 $x_switch 8
+bindsym $mod+9 $x_switch 9
+bindsym $mod+0 $x_switch 10
+
+set $wmfocus exec --no-startup-id "wmfocus --halign center --valign center --bgcolor 'rgba(30,33,39,1)' --textcolor 'rgba(171,178,191,1)' --font 'Ubuntu:150'"
+
+bindsym $mod+Tab $wmfocus
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# exit sway
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your session.' -b 'Yes, exit sway' 'swaymsg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+mode "screenshot_upload" {
+	bindsym Escape mode default; exec cancel_screenshot
+}
+
+bindsym $mod+Shift+Print exec screenshot upload
+
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+#set_from_resource $fg i3wm.color1 #f0f0f0
+#set_from_resource $bg i3wm.color6 #f0f0f0
+
+## class                border         backgr.      text          indicator child_border
+client.focused          $bgHighlight   $bgHighlight $fgHighlight  $bg       $bgHighlight
+client.focused_inactive $bg            $bg          $fg           $bg       $bg
+client.unfocused        $bg            $bg          $fg           $bg       $bg
+client.urgent           $bg            $bg          $fg           $bg       $bg
+client.placeholder      $bg            $bg          $fg           $bg       $bg
+
+#client.background       $bg
+
+
+bar {
+    status_command i3status -c ~/.config/i3status.conf
+    font pango:Fira Code 11
+
+    colors {
+        background #282c34E5
+        statusline #abb2bf
+        separator #abb2bf
+
+        focused_workspace  #4c7899 #2196f3   #ffffff
+        active_workspace   #333333 #61afef   #ffffff
+        inactive_workspace #333333 #282c34E5 #888888
+        urgent_workspace   #2f343a #e06c75   #ffffff
+        binding_mode       #2f343a #900000   #ffffff
+        #binding_mode       $fg $bg $fg
+    }
+}
+
+bindsym --locked XF86AudioMute exec amixer set Master toggle
+bindsym --locked XF86AudioRaiseVolume exec amixer sset Master 5%+
+bindsym --locked XF86AudioLowerVolume exec amixer sset Master 5%-
+bindsym --locked XF86AudioMicMute exec amixer set Capture toggle
+
+bindsym --locked $mod+Down exec playerctl play-pause
+bindsym --locked $mod+Left exec playerctl previous
+bindsym --locked $mod+Right exec playerctl next
+bindsym --locked $mod+Up exec playerctl stop
+
+
+bindsym Print exec screenshot
+
+bindsym --locked XF86MonBrightnessUp exec brightness_up
+bindsym --locked XF86MonBrightnessDown exec brightness_down
+
+bindsym $mod+plus exec upvote
+bindsym $mod+minus exec downvote
+
+bindsym $mod+c exec cliptray
+bindsym $mod+g exec toggle_coffee
+
+# xinput settings:
+exec xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
+exec xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2
+exec xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
+
+# Start some programs:
+exec --no-startup-id albert &
+# exec --no-startup-id start_wallpaper_manager &
+exec --no-startup-id auto_brightness &
+exec --no-startup-id nixos_update_watcher &
+exec --no-startup-id xfsettingsd &
+# exec --no-startup-id stay_awake_on_full_screen &
+
+bindsym $mod+period exec i3_dock
+
+for_window [title="feh .*"] floating enable
+for_window [title="Unlock Database - KeePassXC"] floating enable
+for_window [title="Unlock Database - KeePassXC"] sticky enable
+for_window [class="keepassxc" tiling] move container to workspace 4
+exec keepassxc
+
+for_window [class="firefox" tiling] move container to workspace 4
+exec firefox
+
+exec nm-applet
+
+for_window [class="^.*"] border pixel 2
+for_window [class="^albert"] border pixel 0
+#for_window [class="^albert"] move  position center
+for_window [instance=xfce4-display-settings] sticky enable
+for_window [class="nm-openvpn-auth-dialog"] sticky enable
+
+# i3-gaps specific stuff:
+smart_borders on
+gaps inner 15
+smart_gaps on
+
+# Sway specific stuffs:
+
+output eDP-1 pos 0 0 res 1920x1080
+output DP-1 pos 1920 0 res 3840x2160 scale 2
+
+exec_always setwall
+
+input * {
+  xkb_options eurosign:e
+  xkb_options ctrl:nocaps
+}
+	
+input 2:7:SynPS/2_Synaptics_TouchPad {
+  tap enabled
+  natural_scroll enabled
+}
+
+exec redshift -l 52:5 -m wayland
+
+default_border pixel
+
+exec "dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus &"
+exec "mako --default-timeout 10000 &"
+# Timeout in miliseconds
+
+exec "swayidle \
+    timeout 600 lock_screen1 \
+    before-sleep lock_screen1"
+bindsym $mod+Escape exec pkill -USR1 swayidle
+bindsym --locked $mod+Shift+Escape exec systemctl suspend
+
+exec swaytransparent.py
+
+# inhibit_idle didn't make the cut for 1.0, but thanks to Nix we can easily compile our own version.
+# See: https://github.com/swaywm/sway/pull/3962
+for_window [title=".*"] inhibit_idle fullscreen
+
+bindsym $mod+Slash exec /home/synthetica/devel/splatmoji/splatmoji copy
